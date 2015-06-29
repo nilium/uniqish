@@ -1,0 +1,64 @@
+uniqish(1)
+==========
+Noel Cower
+
+uniqish is a small utility for splitting input string(s) into a series of
+segments/lines and ensuring that only one of each segment appears. The first
+segment encountered, from right to left, is kept and repeats are removed.
+This is similar to uniq, except that it doesn't only consider adjacent
+lines.
+
+
+INSTALL
+-------
+	go get go.spiff.io/uniqish
+
+
+USAGE
+-----
+	uniqish [OPTIONS] [STRINGS...]
+
+By default, if no strings are passed on the command line, uniqish will
+attempt to read strings from standard input.
+
+
+OPTIONS
+-------
+*-s*='\n'::
+	The character to separate strings by on input and output. May only
+	be one byte.
+
+
+EXAMPLE
+-------
+A simple example case for using uniqish is when sourcing a shell profile,
+but wanting to remove re-occurring entries:
+
+	PATH="$(uniqish -s ':' "$PATH")"
+
+This can be used to clean up a PATH with duplicate entries. I do this mainly
+because I keep a small dev environment on an SD card and regularly source
+a PROFILE file on it that sets up everything for that shell session. It's
+not likely to be useful in a lot of situations.
+
+
+LICENSE
+-------
+uniqish is licensed under the ISC license. The license can be found in the file
+'COPYING' that should have accompanied uniqish and is reproduced below:
+
+> Copyright (c) 2015, Noel Cower.
+>
+> Permission to use, copy, modify, and/or distribute this software for any
+> purpose with or without fee is hereby granted, provided that the above
+> copyright notice and this permission notice appear in all copies.
+>
+> THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+> WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+> MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+> ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+> WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+> ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+> OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+// vim: set ts=8 sw=8 tw=79 sts=8 fo=tcqn noet sta :
